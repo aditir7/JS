@@ -1,4 +1,5 @@
 -- area.js --
+
 function calculateAreas() 
 {
   const r = parseFloat(document.getElementById("circleRadius").value);
