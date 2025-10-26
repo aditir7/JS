@@ -1,0 +1,104 @@
+-- script.js --
+// Get input from user
+let input = prompt("Enter a string:");
+let fromChar = prompt("Enter the character to replace:");
+let toChar = prompt("Enter the new character:");
+
+// 1. Reverse the string
+function reverseString(str) 
+{
+  let reversed = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  } 
+  return reversed;
+}
+
+// 2. Replace characters
+function replaceCharacters(str, fromChar, toChar) 
+{
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === fromChar) {                  //Checks if the current character matches the one we want to replace.
+      result += toChar;                         //If it matches, add the new character instead.
+    } else {
+      result += str[i];                         //If it doesn't match, just add the original character.
+    }
+  }
+  return result;
+}
+
+// 3. Check if the string is a palindrome
+function isPalindrome(str) {
+  let lowerStr = str.toLowerCase();
+  let reversed = reverseString(lowerStr);
+  return lowerStr === reversed;
+}
+
+// Run operations
+let reversed = reverseString(input);
+let replaced = replaceCharacters(input, fromChar, toChar);
+let palindromeResult = isPalindrome(input) ? "Yes" : "No";
+
+// Show results
+let resultMessage = `Original String: ${input}
+Reversed String: ${reversed}
+Replaced String: ${replaced}
+Is Palindrome?: ${palindromeResult}`
+
+alert(resultMessage);
+
+-- index.html --
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Operations</title>
+</head>
+<body>
+  <h2>String Operations</h2>
+
+  <label>Enter String:</label>
+  <input type="text" id="inputString"><br><br>
+
+  <label>Character to Replace:</label>
+  <input type="text" id="fromChar" maxlength="1">
+  <label>New Character:</label>
+  <input type="text" id="toChar" maxlength="1"><br><br>
+
+  <button onclick="processString()">Run Operations</button>
+
+  <div id="result" > </div> 
+
+  <script>
+    function processString() 
+    {
+      const input = document.getElementById("inputString").value;
+      const fromChar = document.getElementById("fromChar").value;
+      const toChar = document.getElementById("toChar").value;
+
+      function reverseString(str) {
+        return str.split('').reverse().join('');
+      }
+
+      function replaceCharacters(str, fromChar, toChar) {
+        return str.split(fromChar).join(toChar);
+      }
+
+      function isPalindrome(str) {
+        const lower = str.toLowerCase();
+        return lower === reverseString(lower);
+      }
+
+      const reversed = reverseString(input);
+      const replaced = replaceCharacters(input, fromChar, toChar);
+      const palindromeResult = isPalindrome(input) ? "Yes" : "No";
+
+      document.getElementById("result").innerText =
+        `Original String: ${input}
+        Reversed String: ${reversed}
+        Replaced String: ${replaced}
+        Is Palindrome?: ${palindromeResult}`;
+    }
+  </script>
+</body>
+</html>
