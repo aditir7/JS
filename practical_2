@@ -1,0 +1,45 @@
+-- script.js --
+function generateTable() 
+{
+  const input = document.getElementById("numberInput").value.trim();
+  const resultBox = document.getElementById("tableResult");
+
+  // Validate input: only non-zero positive integers allowed
+  if (!/^\d+$/.test(input) || parseInt(input) === 0) {
+    resultBox.innerHTML = "<span style='color:red;'>⚠️ Please enter a valid number (non-zero digits only).</span>";
+    return;
+  }
+
+  const num = parseInt(input);
+  let tableHTML = `<strong>📊 Multiplication Table of ${num}:</strong><br><br>`;
+  
+  tableHTML += "<div class='table-content'>";
+  for (let i = 1; i <= 10; i++) {
+    tableHTML += `${num} × ${i} = ${num * i}<br>`;
+  }
+  tableHTML += "</div>";
+
+  resultBox.innerHTML = tableHTML;
+}
+
+
+-- index.html --
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiplication Table Generator</title>
+</head>
+<body>
+    <!-- <div class="container"> -->
+      <h1>📊 Multiplication Table Generator</h1>
+      <p>Enter a number to see its multiplication table up to 10.</p>
+      
+      <input type="number" id="numberInput" placeholder="Enter a number">
+      <button onclick="generateTable()">Generate Table</button>
+
+      <div id="tableResult"></div>
+    <!-- </div>  -->
+
+  <script src="script.js"></script>
+</body>
+</html>
