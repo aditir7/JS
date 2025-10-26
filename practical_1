@@ -1,0 +1,96 @@
+-- area.js --
+function calculateAreas() 
+{
+  const r = parseFloat(document.getElementById("circleRadius").value);
+  const b = parseFloat(document.getElementById("triangleBase").value);
+  const h = parseFloat(document.getElementById("triangleHeight").value);
+  const s = parseFloat(document.getElementById("squareSide").value);
+  const rl = parseFloat(document.getElementById("rectangleLength").value);
+  const rb = parseFloat(document.getElementById("rectangleBreadth").value);
+
+  let resultHTML = '';
+
+  if (!isNaN(r)) 
+  {
+    const circleArea = Math.PI * r * r;
+    resultHTML += `<p>Area of Circle: <strong>${circleArea.toFixed(2)}</strong></p>`;
+  }
+
+  if (!isNaN(b) && !isNaN(h)) 
+  {
+    const triangleArea = 0.5 * b * h;
+    resultHTML += `<p>Area of Triangle: <strong>${triangleArea.toFixed(2)}</strong></p>`;
+  }
+
+  if (!isNaN(s)) 
+  {
+    const squareArea = s * s;
+    resultHTML += `<p>Area of Square: <strong>${squareArea.toFixed(2)}</strong></p>`;
+  }
+
+  if (!isNaN(rl) && !isNaN(rb)) 
+  {
+    const rectangleArea = rl * rb;
+    resultHTML += `<p>Area of Rectangle: <strong>${rectangleArea.toFixed(2)}</strong></p>`;
+  }
+
+  if (resultHTML === '') 
+  {
+    resultHTML = `<p>Please enter valid values for at least one shape.</p>`;
+  }
+
+  document.getElementById("results").innerHTML = resultHTML;
+}
+
+
+-- index.html -- 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Area Calculator</title>
+</head>
+<body>
+  <h2>Area Calculator</h2>
+
+  <label>Circle Radius:</label>
+  <input type="number" id="circleRadius"><br><br>
+
+  <label>Triangle Base:</label>
+  <input type="number" id="triangleBase">
+  <label>Height:</label>  
+  <input type="number" id="triangleHeight"><br><br>
+
+  <label>Square Side:</label>
+  <input type="number" id="squareSide"><br><br>
+
+  <label>Rectangle Length:</label>
+  <input type="number" id="rectangleLength">
+  <label>Breadth:</label>
+  <input type="number" id="rectangleBreadth"><br><br>
+
+  <button onclick="calculateAreas()">Calculate</button>
+
+  <div id="results"></div>
+
+  <script>
+    function calculateAreas() {
+      const r = parseFloat(document.getElementById("circleRadius").value);
+      const b = parseFloat(document.getElementById("triangleBase").value);
+      const h = parseFloat(document.getElementById("triangleHeight").value);
+      const s = parseFloat(document.getElementById("squareSide").value);
+      const rl = parseFloat(document.getElementById("rectangleLength").value);
+      const rb = parseFloat(document.getElementById("rectangleBreadth").value);
+
+      let resultHTML = '';
+
+      if (!isNaN(r)) resultHTML += `<p>Area of Circle: <b>${(Math.PI * r * r).toFixed(2)}</b></p>`;
+      if (!isNaN(b) && !isNaN(h)) resultHTML += `<p>Area of Triangle: <b>${(0.5 * b * h).toFixed(2)}</b></p>`;
+      if (!isNaN(s)) resultHTML += `<p>Area of Square: <b>${(s * s).toFixed(2)}</b></p>`;
+      if (!isNaN(rl) && !isNaN(rb)) resultHTML += `<p>Area of Rectangle: <b>${(rl * rb).toFixed(2)}</b></p>`;
+      if (resultHTML === '') resultHTML = `<p>Please enter valid values.</p>`;
+
+      document.getElementById("results").innerHTML = resultHTML;
+    }
+  </script>
+</body>
+</html>
