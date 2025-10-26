@@ -1,0 +1,32 @@
+-- index.html --
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>String Comparison</title>
+</head>
+<body>
+  <h2>String Comparison Tool</h2>
+
+  <input id="str1" placeholder="Enter first string"><br><br>
+  <input id="str2" placeholder="Enter second string"><br><br>
+  <button onclick="compareStrings()">Compare</button>
+
+  <div id="result"></div>
+
+  <script>
+    function compareStrings() {
+      const s1 = document.getElementById("str1").value;
+      const s2 = document.getElementById("str2").value;
+      let res = "";
+
+      res += `Equality Check: ${s1 === s2 ? "Equal" : "Not Equal"}<br>`;
+      res += `Length Check: ${s1.length === s2.length ? "Same" : "Different"}<br>`;
+      res += `Locale Compare: ${s1.localeCompare(s2) === 0 ? "Equal" : "Not Equal"}<br>`;
+      res += `Case-Insensitive: ${s1.toLowerCase() === s2.toLowerCase() ? "Equal" : "Not Equal"}<br>`;
+
+      document.getElementById("result").innerHTML = res;
+    }
+  </script>
+</body>
+</html>
