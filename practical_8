@@ -1,0 +1,53 @@
+-- script.js -- 
+// Function to change background color sequentially on mouseover
+function changeBackgroundSequence() {
+    document.body.style.backgroundColor = 'Red';
+
+    setTimeout(() => {
+        document.body.style.backgroundColor = 'Pink';
+    }, 2000);
+
+    setTimeout(() => {
+        document.body.style.backgroundColor = 'Green';
+    }, 4000);
+
+    setTimeout(() => {
+        document.body.style.backgroundColor = 'Red';
+    }, 6000);
+}
+
+// Function to change input field background color on focus
+function highlightInput(element) {
+    element.style.backgroundColor = 'lightyellow';
+}
+
+
+-- index.html --
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Change Example</title>
+</head>
+<body onmouseover="changeBackgroundSequence()">
+  <h2>Background & Input Highlight Demo</h2>
+
+  <label>Enter Name:</label>
+  <input type="text" onfocus="highlightInput(this)">
+  <br><br>
+  <label>Enter Email:</label>
+  <input type="text" onfocus="highlightInput(this)">
+
+  <script>
+    function changeBackgroundSequence() {
+      document.body.style.backgroundColor = 'Red';
+      setTimeout(() => document.body.style.backgroundColor = 'Pink', 2000);
+      setTimeout(() => document.body.style.backgroundColor = 'Green', 6000);
+      setTimeout(() => document.body.style.backgroundColor = 'Red', 10000);
+    }
+
+    function highlightInput(element) {
+      element.style.backgroundColor = 'lightyellow';
+    }
+  </script>
+</body>
+</html>
