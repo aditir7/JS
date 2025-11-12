@@ -62,3 +62,95 @@ function union(a, b) {
    
   const result_subset = subset(setA, setB); 
   console.log("Subset Result: ", result_subset); 
+
+
+-- index.html --
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Operations</title>
+</head>
+<body>
+
+    <h2>Set Operations</h2>
+
+    <label>Enter elements for Set A:</label><br>
+    <input type="text" id="setAInput" placeholder="e.g. apple,mango,orange,banana">
+    <br><br>
+
+    <label>Enter elements for Set B:</label><br>
+    <input type="text" id="setBInput" placeholder="e.g. apple,banana">
+    <br><br>
+
+    <button onclick="performSetOperations()">Run Operations</button>
+
+    <h3>Results:</h3>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+    <p id="result4"></p>
+
+    <script>
+        // Function to find the union of two sets 
+        function union(a, b) { 
+            let unionSet = new Set(a);  
+            for (let i of b) { 
+                unionSet.add(i); 
+            } 
+            return unionSet; 
+        } 
+
+        // Function to find the intersection of two sets 
+        function intersection(setA, setB) { 
+            let intersectionSet = new Set(); 
+            for (let i of setB) { 
+                if (setA.has(i)) { 
+                    intersectionSet.add(i); 
+                } 
+            } 
+            return intersectionSet; 
+        } 
+
+        // Function to find the difference between two sets 
+        function difference(setA, setB) { 
+            let differenceSet = new Set(setA); 
+            for (let i of setB) { 
+                differenceSet.delete(i); 
+            }
+            return differenceSet;
+        }
+
+        // Function to check if `setB` is a subset of `setA` 
+        function subset(setA, setB) { 
+            for (let i of setB) { 
+                if (!setA.has(i)) { 
+                    return false; 
+                } 
+            } 
+            return true; 
+        } 
+
+        // Function to handle input and display results
+        function performSetOperations() {
+            const inputA = document.getElementById("setAInput").value.trim();
+            const inputB = document.getElementById("setBInput").value.trim();
+
+            const setA = new Set(inputA.split(",").map(item => item.trim()));
+            const setB = new Set(inputB.split(",").map(item => item.trim()));
+
+            const result_union = union(setA, setB);  
+            const result_intersection = intersection(setA, setB); 
+            const result_difference = difference(setA, setB); 
+            const result_subset = subset(setA, setB); 
+
+            document.getElementById("result1").textContent = "Union Result: " + Array.from(result_union).join(", ");
+            document.getElementById("result2").textContent = "Intersection Result: " + Array.from(result_intersection).join(", ");
+            document.getElementById("result3").textContent = "Difference Result (A - B): " + Array.from(result_difference).join(", ");
+            document.getElementById("result4").textContent = "Is Set B a subset of Set A? " + result_subset;
+        }
+    </script>
+
+</body>
+</html>
+
+
