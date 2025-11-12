@@ -1,2 +1,113 @@
 -- index.html --
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+  body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .calc {
+    display: inline-block;
+    background: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .display {
+    width: 95%;
+    height: 40px;
+    font-size: 20px;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 50px;
+    height: 40px;
+    margin: 3px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .equal {
+    height: 90px;
+    background-color: lightgreen;
+  }
+
+  .op {
+    background-color: lightgray;
+  }
+</style>
+
+</head>
+<body>
+  <div class="calc">
+    <input id="display" class="display" readonly>
+
+    <div class="row">
+      <button class="btn" onclick="clearAll()">C</button>
+      <button class="btn" onclick="backspace()">⌫</button>
+      <button class="btn op" onclick="insert('/')">/</button>
+      <button class="btn op" onclick="insert('*')">×</button>
+    </div>
+
+    <div class="row">
+      <button class="btn" onclick="insert('7')">7</button>
+      <button class="btn" onclick="insert('8')">8</button>
+      <button class="btn" onclick="insert('9')">9</button>
+      <button class="btn op" onclick="insert('-')">-</button>
+    </div>
+
+    <div class="row">
+      <button class="btn" onclick="insert('4')">4</button>
+      <button class="btn" onclick="insert('5')">5</button>
+      <button class="btn" onclick="insert('6')">6</button>
+      <button class="btn op" onclick="insert('+')">+</button>
+    </div>
+
+    <div class="row">
+      <button class="btn" onclick="insert('1')">1</button>
+      <button class="btn" onclick="insert('2')">2</button>
+      <button class="btn" onclick="insert('3')">3</button>
+      <button class="btn equal" onclick="calculate()">=</button>
+    </div>
+
+    <div class="row">
+      <button class="btn wide" onclick="insert('0')">0</button>
+      <button class="btn" onclick="insert('.')">.</button>
+    </div>
+  </div>
+
+  <script>
+    const d = () => document.getElementById('display');
+
+    function insert(v) {
+      d().value += v;
+    }
+    function clearAll() {
+      d().value = '';
+    }
+    function backspace() {
+      d().value = d().value.slice(0, -1);
+    }
+    function calculate() {
+      const exp = d().value;
+      if (!exp) return;
+      try {
+        // eval is used intentionally for this simple calculator
+        const res = eval(exp);
+        d().value = (res === undefined) ? '' : res;
+      } catch (e) {
+        d().value = 'Error';
+        setTimeout(() => d().value = '', 900);
+      }
+    }
+  </script>
+</body>
+</html>
+
