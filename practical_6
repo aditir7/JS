@@ -20,3 +20,61 @@ if (arr.includes(valueToCheck)) {
 // 3. Empty the array
 arr.length = 0;
 console.log("Array after emptying:", arr);
+
+
+-- index.html --
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations</title>
+</head>
+<body>
+
+    <h2>Array Operations</h2>
+
+    <label>Enter element to remove:</label>
+    <input type="number" id="removeInput">
+    <br><br>
+
+    <label>Enter value to check:</label>
+    <input type="number" id="checkInput">
+    <br><br>
+
+    <button onclick="performOperations()">Run Operations</button>
+
+    <h3>Results:</h3>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+    <p id="result4"></p>
+
+    <script>
+        function performOperations() {
+            let arr = [10, 20, 30, 40, 50, 60];
+
+            // Show original array first
+            document.getElementById("result1").textContent = "Original Array: " + arr.join(", ");
+
+            // 1. Remove specific element
+            let elementToRemove = parseInt(document.getElementById("removeInput").value);
+            arr = arr.filter(item => item !== elementToRemove);
+            document.getElementById("result2").textContent = "After removing " + elementToRemove + ": " + arr.join(", ");
+
+            // 2. Check if array contains a specified value
+            let valueToCheck = parseInt(document.getElementById("checkInput").value);
+            if (arr.includes(valueToCheck)) {
+                document.getElementById("result3").textContent = "Array contains " + valueToCheck;
+            } else {
+                document.getElementById("result3").textContent = "Array does not contain " + valueToCheck;
+            }
+
+            // 3. Empty the array
+            arr.length = 0;
+            document.getElementById("result4").textContent = "Array after emptying: " + arr;
+        }
+    </script>
+
+</body>
+</html>
+
